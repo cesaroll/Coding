@@ -98,5 +98,28 @@ namespace Coding.Collections.Generics
         {
             throw new NotImplementedException();
         }
+
+        // Remove Duplicates
+        public void RemoveDuplicates()
+        {
+            // use current and runner
+            var current = Head;
+
+            while(current != null)
+            {
+                var runner = current;
+                while(runner.Next != null)
+                {
+                    if(current.Data.Equals(runner.Next.Data)){
+                        runner.Next = runner.Next.Next;
+                    }
+                    else{
+                        runner = runner.Next;
+                    }
+                }
+
+                current = current.Next;
+            }
+        }
     }    
 }

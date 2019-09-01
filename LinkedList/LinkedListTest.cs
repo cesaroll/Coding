@@ -30,7 +30,6 @@ namespace Coding.Collections.Generics.Tests
             for(int i=0; i<input.Length; i++)
                 list.Add(input[i]);
 
-            // Result should be 2,4,5
             var expected = input;
             int idx =0;
 
@@ -66,6 +65,27 @@ namespace Coding.Collections.Generics.Tests
             foreach(int item in list){
                 Assert.Equal(item, expected[idx++]);
             }
+        }
+
+        [Theory]
+        [InlineData(new int[]{1,2,5,2,3}, new int[]{1,2,5,3})]
+        [InlineData(new int[]{1,2,5,2,3,3,4,5,6}, new int[]{1,2,5,3,4,6})]
+        public void RemoveDuplicatesTest(int[] input, int[] expected)
+        {
+            var list = new LinkedList<int>();
+
+            for(int i=0; i<input.Length; i++)
+                list.Add(input[i]);
+
+            list.RemoveDuplicates();
+
+            Assert.Equal(expected.Length, list.Length);
+
+            int idx=0;
+            foreach(int item in list){
+                Assert.Equal(item, expected[idx++]);
+            }
+
         }
     }
 }
