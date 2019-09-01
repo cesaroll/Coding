@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Coding.Collections.Generics
 {
-    public class LinkedList<T> where T : class
+    public class LinkedList<T> : IEnumerable<T> where T : class
     {
         private Node<T> Head {get; set;}
 
@@ -46,6 +48,24 @@ namespace Coding.Collections.Generics
             }
 
             return false;
+        }
+
+        // Traverse Linked List and return Enumerator
+        public IEnumerator<T> GetEnumerator()
+        {
+            var next = Head;
+
+            while(next != null)
+            {
+                yield return next.Data;
+                next = next.Next;
+            }
+
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }    
 }
