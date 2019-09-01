@@ -13,6 +13,24 @@ namespace Coding.Collections.Generics
             Head = null;
         }
 
+        // Length
+        public int Length
+        {
+            get
+            {
+                int length = 0;
+                var node = Head;
+
+                while(node != null){
+                    length++;
+                    node = node.Next;
+                }
+
+                return length;
+            }
+            
+        }
+
         //Add Item
         public void Add(T value)
         {
@@ -36,7 +54,7 @@ namespace Coding.Collections.Generics
             node.Next = newNode;
 
         }
-        
+
         //Delete Item
         public bool Remove(T value)
         {           
