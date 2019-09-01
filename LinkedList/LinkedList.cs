@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Coding.Collections.Generics
 {
-    public class LinkedList<T> : IEnumerable<T> where T : class
+    public class LinkedList<T> : IEnumerable<T> where T : IComparable<T>, IEquatable<T>
     {
         private Node<T> Head {get; set;}
 
@@ -16,34 +16,47 @@ namespace Coding.Collections.Generics
         //Add Item
         public void Add(T value)
         {
-            var next = Head;
+            // Create new node
+            var newNode = new Node<T>(){Data = value};
 
-            // Move to end of list
-            while(next != null)
-                next = next.Next;
+            // if Head is empty, new node is Head
+            if(Head == null)
+            {
+                Head = newNode;
+                return;
+            }
 
-            // Add new node
-            next = new Node<T>(){Data = value};
+            // Otherwise move to end of list
+            var node = Head;
+
+            while(node.Next != null)
+                node = node.Next;
+
+            // And add new Node at end
+            node.Next = newNode;
+
         }
         
         //Delete Item
-        public bool Delete(T value)
-        {
+        public bool Remove(T value)
+        {           
             if(Head == null)
                 return false;
-            else if(Head.Data == value){
+            else if(Head.Data.Equals(value)){
                 // If Head is value then move Head
                 Head = Head.Next;
                 return true;
             } else{
                 var node = Head;
-
                 // Search value in list
-                while(node.Next != null){
-                    if(node.Next.Data == value){
-                        node.Next = node.Next.Next;
+                while(node.Next != null)
+                {
+                    if(node.Next.Data.Equals(value)){
+                        node.Next = node.Next.Next; 
                         return true;
                     }
+
+                    node = node.Next;
                 }
             }
 
