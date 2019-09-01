@@ -1,0 +1,12 @@
+C:\WorkSpaces\Coding\LinkedList\bin\Debug\netcoreapp3.0\LinkedList.exe
+C:\WorkSpaces\Coding\LinkedList\bin\Debug\netcoreapp3.0\LinkedList.deps.json
+C:\WorkSpaces\Coding\LinkedList\bin\Debug\netcoreapp3.0\LinkedList.runtimeconfig.json
+C:\WorkSpaces\Coding\LinkedList\bin\Debug\netcoreapp3.0\LinkedList.runtimeconfig.dev.json
+C:\WorkSpaces\Coding\LinkedList\bin\Debug\netcoreapp3.0\LinkedList.dll
+C:\WorkSpaces\Coding\LinkedList\bin\Debug\netcoreapp3.0\LinkedList.pdb
+C:\WorkSpaces\Coding\LinkedList\obj\Debug\netcoreapp3.0\LinkedList.csprojAssemblyReference.cache
+C:\WorkSpaces\Coding\LinkedList\obj\Debug\netcoreapp3.0\LinkedList.csproj.CoreCompileInputs.cache
+C:\WorkSpaces\Coding\LinkedList\obj\Debug\netcoreapp3.0\LinkedList.AssemblyInfoInputs.cache
+C:\WorkSpaces\Coding\LinkedList\obj\Debug\netcoreapp3.0\LinkedList.AssemblyInfo.cs
+C:\WorkSpaces\Coding\LinkedList\obj\Debug\netcoreapp3.0\LinkedList.dll
+C:\WorkSpaces\Coding\LinkedList\obj\Debug\netcoreapp3.0\LinkedList.pdb

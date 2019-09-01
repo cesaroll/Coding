@@ -24,6 +24,28 @@ namespace Coding.Collections.Generics
             next = new Node<T>(){Data = value};
         }
         
-        
+        //Delete Item
+        public bool Delete(T value)
+        {
+            if(Head == null)
+                return false;
+            else if(Head.Data == value){
+                // If Head is value then move Head
+                Head = Head.Next;
+                return true;
+            } else{
+                var node = Head;
+
+                // Search value in list
+                while(node.Next != null){
+                    if(node.Next.Data == value){
+                        node.Next = node.Next.Next;
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
     }    
 }
