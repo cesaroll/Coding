@@ -1,6 +1,8 @@
+using System;
+
 namespace Coding.Collections.Generics
 {
-    public class LinkedList<T>
+    public class LinkedList<T> where T : class
     {
         private Node<T> Head {get; set;}
 
@@ -9,22 +11,19 @@ namespace Coding.Collections.Generics
             Head = null;
         }
 
-        //Add Node
+        //Add Item
         public void Add(T value)
         {
-            if(Head == null) // If Head is null create Head
-                Head = new Node<T>(){Data = value};
-            else 
-            { // Otherwise node is Head
-                var node = Head;
+            var next = Head;
 
-                // mode node to end of list
-                while(node.Next != null)
-                    node = node.Next;
-                // Add new node
-                node.Next = new Node<T>(){Data = value};
+            // Move to end of list
+            while(next != null)
+                next = next.Next;
 
-            }
-        }        
+            // Add new node
+            next = new Node<T>(){Data = value};
+        }
+        
+        
     }    
 }
