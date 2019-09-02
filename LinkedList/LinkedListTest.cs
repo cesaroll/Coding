@@ -87,5 +87,19 @@ namespace Coding.Collections.Generics.Tests
             }
 
         }
+
+        [Theory]
+        [InlineData(5, 2, 4)]
+        [InlineData(2, 2, 1)]
+        public void RemoveKtElementFromEndTest(int size, int k, int expected)
+        {
+            var list = new LinkedList<int>();
+
+            for(int i=1; i<=size; i++)
+                list.Add(i);
+
+            Assert.Equal(expected, list.RemoveKtElementFromEnd(k));
+        }
+
     }
 }

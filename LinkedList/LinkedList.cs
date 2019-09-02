@@ -121,5 +121,36 @@ namespace Coding.Collections.Generics
                 current = current.Next;
             }
         }
+
+        public T RemoveKtElementFromEnd(int k)
+        {
+            if(k < 1 || Head == null)
+                return default(T);
+
+            var prev = Head;
+            var node = Head;
+            var runner = Head;
+
+            // Move runner k elements
+            for(int i=1; i<k; i++)
+            {
+                runner = runner.Next;
+                if(runner == null)
+                    return default(T);
+            }
+
+            //Move runner to end of list
+            while(runner.Next != null)
+            {
+                runner = runner.Next;
+                prev = node;
+                node = node.Next;
+            }
+
+            prev.Next = runner;
+
+            return node.Data;
+
+        }
     }    
 }
