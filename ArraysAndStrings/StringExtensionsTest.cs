@@ -62,5 +62,15 @@ namespace Coding.ArraysAndStrings.Xunit
         {
             Assert.Equal(expected, str.ReplaceCharInLine(c, newVal));
         }
+
+        [Theory]
+        [InlineData("aabcccccaaa", "a2b1c5a3")]
+        [InlineData("abcdef", "abcdef")]
+        [InlineData("ooooooooooa", "o10a1")]
+        [InlineData("", "")]
+        public void CompressTest(string str, string expected)
+        {
+            Assert.Equal(expected, str.Compress());
+        }
     }    
 }

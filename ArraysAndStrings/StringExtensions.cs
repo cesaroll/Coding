@@ -144,5 +144,91 @@ namespace Coding.ArraysAndStrings
             return new string(newArr);
 
         }
+
+        // Compress String with buffer
+        public static string CompressWithBuffer(this string str)
+        {
+            throw new NotImplementedException();
+        }
+
+        // Compress string
+        public static string Compress(this string str)
+        {
+            if(string.IsNullOrEmpty(str))
+                return str;
+
+            int compressedSize = str.CompressionSize(); // Get Size it will be sfter compressed
+            //Console.WriteLine($"Compressed Size: {compressedSize}");
+            
+            if(compressedSize >= str.Length) // If bigger than or equal to original just return original
+                return str;
+            
+            // Create result char array of comrpessed size
+            var result = new char[compressedSize];
+            int resIdx = 0;
+
+            // Compress
+            char prev = str[0];
+            int cnt = 1;
+            for(int i=1; i<str.Length; i++)
+            {
+                if(str[i] == prev)
+                {
+                    cnt++;
+                }
+                else
+                {
+                    CopyCompressedValue(result, prev, cnt, ref resIdx);
+
+                    cnt = 1;
+                }
+
+                prev = str[i];
+            }
+
+            // Copy last value
+            CopyCompressedValue(result, prev, cnt, ref resIdx);
+
+            // return compressed string
+            return new string(result);
+        }
+
+        private static void CopyCompressedValue(char[] arr, char c, int cnt, ref int idx)
+        {
+            arr[idx++] = c;
+
+            var arrCnt = cnt.ToString().ToCharArray();
+            Array.Copy(arrCnt, 0, arr, idx, arrCnt.Length);
+
+            idx += arrCnt.Length;
+        }
+
+        // Return size of compressed string
+        private static int CompressionSize(this string str)
+        {
+            if(string.IsNullOrEmpty(str))
+                return 0;
+
+            char prev = str[0];
+            int cnt = 1;
+            int size = 0;
+
+            for(int i=1; i<str.Length; i++)
+            {
+                if(prev == str[i])
+                {
+                    cnt++;
+                }
+                else
+                {
+                    size += 1 + $"{cnt}".Length;
+                    cnt = 1;
+                }
+
+                prev = str[i];
+            }
+
+            return size += 1 + $"{cnt}".Length;
+        }
     }
 }

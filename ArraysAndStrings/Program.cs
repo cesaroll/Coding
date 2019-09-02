@@ -1,4 +1,5 @@
 ﻿using System;
+using Coding.ArraysAndStrings;
 
 namespace ArraysAndStrings
 {
@@ -6,7 +7,8 @@ namespace ArraysAndStrings
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string str = "aabcccccaaa";
+            Console.WriteLine($"Input: {str} Compressed: {str.Compress()}");
         }
     }
 }
