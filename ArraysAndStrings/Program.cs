@@ -14,11 +14,18 @@ namespace ArraysAndStrings
                 new int[]{10,9,8,7}
             };
 
-            
+
             Print(matrix);
 
             ArrayOperations.Rotate90Degrees(matrix);
 
+            Print(matrix);
+
+            matrix[1][1] = 0;
+            matrix[3][2] = 0;
+
+            Print(matrix);
+            ArrayOperations.SetZeroes(matrix);
             Print(matrix);
 
         }

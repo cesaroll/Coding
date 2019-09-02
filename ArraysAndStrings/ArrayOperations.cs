@@ -37,6 +37,43 @@ namespace Coding.ArraysAndStrings
 
         }
 
-        
+        // If zero found, set row and column to zeroes
+        public static void SetZeroes(int[][] matrix)
+        {
+            int len = matrix[0].Length;
+
+            var rows = new bool[len];
+            var cols = new bool[len];
+
+            for(int i=0; i<len; i++)
+            {
+                for(int j=0; j<len; j++)
+                {
+                    if(matrix[i][j] == 0)
+                    {
+                        rows[i] = true;
+                        cols[j] = true;
+                    }
+                }
+            }
+
+            for(int i=0; i<len; i++){
+                if(rows[i])
+                {
+                    for(int j=0; j<len; j++)
+                    {
+                        matrix[i][j] = 0;
+                    }
+                }
+                if(cols[i])
+                {
+                    for(int j=0; j<len; j++)
+                    {
+                        matrix[j][i] = 0;
+                    }
+                }
+            }
+
+        }
     }
 }
