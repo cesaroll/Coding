@@ -101,5 +101,21 @@ namespace Coding.Collections.Generics.Tests
             Assert.Equal(expected, list.RemoveKtElementFromEnd(k));
         }
 
+        
+        [Theory]
+        [InlineData(new int[]{5,4,3,2,1}, 3, new int[]{2,1,3,5,4})]
+        public void PartitionByValueTest(int[] input, int value,  int[] expected)
+        {
+            var list = new LinkedList<int>(input);
+            list.PartitionByValue(value);
+
+            Assert.Equal(list.Length, expected.Length);
+
+            int idx=0;
+            foreach(var item in list) {
+                Assert.Equal(expected[idx++], item);
+            }
+        }
+
     }
 }

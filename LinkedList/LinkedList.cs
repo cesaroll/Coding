@@ -8,9 +8,14 @@ namespace Coding.Collections.Generics
     {
         private Node<T> Head {get; set;}
 
+        public LinkedList(T[] arr) : this()
+        {
+            for(int i=0; i<arr.Length; i++)
+                this.Add(arr[i]);
+
+        }
         public LinkedList()
         {
-            Head = null;
         }
 
         // Length
@@ -122,6 +127,8 @@ namespace Coding.Collections.Generics
             }
         }
 
+
+        // Remove Kth element from End
         public T RemoveKtElementFromEnd(int k)
         {
             if(k < 1 || Head == null)
@@ -151,6 +158,88 @@ namespace Coding.Collections.Generics
 
             return node.Data;
 
+        }
+
+        // Partition Linked List
+        // Given a value move values lesser than to the left and bigger values to the righ
+        public void PartitionByValue(T value)
+        {
+            // Create 2 separate Linked Lists and then Merge at the End
+
+            if(Head == null || Head.Next == null)
+                return;
+
+            var left = new LinkedList<T>();
+            var right = new LinkedList<T>();
+            int searchedCount = 0;
+
+            var node = Head;
+
+            
+            while(node != null)
+            {
+                
+                int res = node.Data.CompareTo(value);
+
+                if(res < 0)
+                {
+                    left.Add(node.Data);
+                }
+                else if(res > 0)
+                {
+                    right.Add(node.Data);
+                }
+                else {
+                    searchedCount++;
+                }
+
+                node = node.Next;
+            }
+
+            // Add Searched Node
+            while(0 < searchedCount--)
+                left.Add(value);
+
+            //Merge linked lists
+
+            var merged = Merge(left, right);
+
+            this.Head = merged.Head;
+        }
+
+
+        // Merge with other LinkedList
+        public static LinkedList<T> Merge(LinkedList<T> left, LinkedList<T> right)
+        {
+            var leftEnd = left.LastNode();
+
+            leftEnd.Next = right.Head;
+
+            return left;
+        }
+
+        // Find Last Value
+        public T GetLast()
+        {
+            var node = LastNode();
+
+            if(node != null)
+                return node.Data;
+
+            return default(T);
+        }
+        // Find Last Node
+        private Node<T> LastNode()
+        {
+            if(Head == null)
+                return null;
+
+            var node = Head;
+
+            while(node.Next != null)
+                node = node.Next;
+
+            return node;
         }
     }    
 }

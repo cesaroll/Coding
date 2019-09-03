@@ -7,25 +7,24 @@ namespace LinkedList
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Testing Linked List!");
+            var list = new LinkedList<int>(new int[]{5,4,3,2,1});
 
-            var list = new LinkedList<int>();
+            Display(list);
 
-            list.Remove(0);
-            list.Add(1);
-            list.Add(2);
-            list.Add(3);
-            list.Remove(1);
-            list.Add(4);
-            list.Remove(3);
-            list.Add(5);
-            list.Add(6);
-            list.Remove(6);
+            list.PartitionByValue(3);
 
-            foreach(var item in list){
-                Console.WriteLine($"    Retrieving: {item}");
+            Display(list);
+
+        }
+
+        static void Display(LinkedList<int> list)
+        {
+            foreach(var item in list)
+            {
+                Console.Write($"{item}, ");
             }
 
+            Console.WriteLine();
         }
     }
 }
