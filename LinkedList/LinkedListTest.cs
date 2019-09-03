@@ -104,6 +104,7 @@ namespace Coding.Collections.Generics.Tests
         
         [Theory]
         [InlineData(new int[]{5,4,3,2,1}, 3, new int[]{2,1,3,5,4})]
+        [InlineData(new int[]{5,4,3,2,1,8,7,10}, 3, new int[]{2,1,3,5,4,8,7,10})]
         public void PartitionByValueTest(int[] input, int value,  int[] expected)
         {
             var list = new LinkedList<int>(input);
@@ -115,6 +116,24 @@ namespace Coding.Collections.Generics.Tests
             foreach(var item in list) {
                 Assert.Equal(expected[idx++], item);
             }
+        }
+
+        [Theory]
+        [InlineData(new int[]{0,0,1}, new int[]{0,0,2}, new int[]{0,0,3} )]
+        public void SumForwardTest(int[] input1, int[] input2, int[] expected)
+        {
+            var list1 = new LinkedList<int>(input1);
+            var list2 = new LinkedList<int>(input2);
+
+            //var result = list1.SumForward(list2);
+            var result = list1.SumForward(list2);
+
+            Assert.Equal(expected.Length, result.Length);
+
+            int idx=0;
+            foreach(var item in result)
+                Assert.Equal(expected[idx++], item);
+
         }
 
     }

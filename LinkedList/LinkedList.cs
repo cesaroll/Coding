@@ -6,7 +6,7 @@ namespace Coding.Collections.Generics
 {
     public class LinkedList<T> : IEnumerable<T> where T : IComparable<T>, IEquatable<T>
     {
-        private Node<T> Head {get; set;}
+        internal Node<T> Head {get; set;}
 
         public LinkedList(T[] arr) : this()
         {
@@ -241,5 +241,6 @@ namespace Coding.Collections.Generics
 
             return node;
         }
+        
     }    
 }
