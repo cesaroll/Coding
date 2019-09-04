@@ -160,5 +160,46 @@ namespace Coding.Collections.Generics
             return node.Data;
         }
 
+
+        // Function that returns true if linked list is a pallindrome
+        public static bool IsPalindrome(this LinkedList<int> list)
+        {
+            if(list == null || list.Head == null)
+                return false;
+
+            var stack = new System.Collections.Generic.Stack<int>();
+            var sr = list.Head; // Slow Runner
+            var fr = list.Head; // Fast Runner
+            int cnt = 0;
+
+            while(fr != null)
+            {
+                cnt++;
+                stack.Push(sr.Data);                
+
+                if(fr.Next != null)
+                {
+                    cnt++;
+                    sr = sr.Next;
+                    fr = fr.Next.Next;
+                }
+                else{
+                    break;
+                }
+            }
+
+            // Compare Stack to rest of list
+            while(sr != null)
+            {
+                int val = stack.Pop();
+
+                if(val != sr.Data)
+                    return false;
+
+                sr = sr.Next;
+            }
+
+            return true;
+        }
     }
 }

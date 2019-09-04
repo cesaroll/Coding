@@ -156,5 +156,16 @@ namespace Coding.Collections.Generics.Tests
         }
        
 
+        [Theory]
+        [InlineData(new int[]{1,2,3,3,2,1}, true)]
+        [InlineData(new int[]{1,2,3,3,2}, false)]
+        [InlineData(new int[]{1,2,3,2,1}, true)]
+        public void IsPAlindromeTest(int[] input, bool expected)
+        {
+            var list = new LinkedList<int>(input);
+
+            Assert.Equal(expected, list.IsPalindrome());
+        }
+
     }
 }
