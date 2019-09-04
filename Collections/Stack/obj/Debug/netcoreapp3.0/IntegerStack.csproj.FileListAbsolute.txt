@@ -1,0 +1,4 @@
+C:\WorkSpaces\Coding\Collections\Stack\obj\Debug\netcoreapp3.0\IntegerStack.csprojAssemblyReference.cache
+C:\WorkSpaces\Coding\Collections\Stack\obj\Debug\netcoreapp3.0\IntegerStack.csproj.CoreCompileInputs.cache
+C:\WorkSpaces\Coding\Collections\Stack\obj\Debug\netcoreapp3.0\IntegerStack.AssemblyInfoInputs.cache
+C:\WorkSpaces\Coding\Collections\Stack\obj\Debug\netcoreapp3.0\IntegerStack.AssemblyInfo.cs
