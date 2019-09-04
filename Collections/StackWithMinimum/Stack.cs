@@ -6,6 +6,13 @@ namespace Coding.Collections
     {
         private Node Top {get; set;}
 
+        public long Length{get; set;}
+
+        public Stack()
+        {
+            Length = 0;
+        }
+
         public bool IsEmpty
         {
             get
@@ -21,6 +28,8 @@ namespace Coding.Collections
                 node.Next = Top;
 
             Top = node;
+
+            Length++;
         }
 
         public int Peek()
@@ -38,6 +47,7 @@ namespace Coding.Collections
 
             int value = Top.Data;
             Top = Top.Next;
+            Length--;
             return value;
         }
     }
