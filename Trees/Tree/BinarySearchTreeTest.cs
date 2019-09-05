@@ -37,5 +37,20 @@ namespace Coding.Trees.Test
                 });
 
         }
+
+        [Theory]
+        [InlineData(new int[]{100,20,500,10,30,40}, new int[]{10,40,30,20,500,100})]
+        public void PostOrderTest(int[] input, int[] expected)
+        {
+            var tree = new BinarySearchTree();
+            tree.Add(input);
+
+            int idx = 0;
+
+            tree.PostOrder((x) => {
+                    Assert.Equal(expected[idx++], x);
+                });
+
+        }
     }
 }

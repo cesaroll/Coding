@@ -18,8 +18,44 @@ namespace Coding.Trees
                 Add(data[i]);
         }
 
-        // Add Iterative
+        // Add Recursive
         public void Add(int data)
+        {
+            var newNode = new Node(data);
+
+            if(Root == null){
+                Root = newNode;
+                return;
+            }
+
+            Add(Root, newNode);
+        }
+
+        private void Add(Node current, Node newNode)
+        {
+            if(current.Data > newNode.Data){
+                if(current.Left == null){
+                    current.Left = newNode;
+                    return;
+                }
+                else{
+                    Add(current.Left, newNode);
+                }
+            }
+            else{
+                if(current.Right == null){
+                    current.Right = newNode;
+                    return;
+                }
+                else{
+                    Add(current.Right, newNode);
+                }
+            }
+
+        }
+
+        // Add Iterative
+        /*public void Add(int data)
         {
             var newNode = new Node(data);
             
@@ -52,7 +88,9 @@ namespace Coding.Trees
                 }
             }
 
-        }
+        }*/
+
+        // inOrder Iterative
 
         public void InOrder(Action<int> read)
         {
@@ -88,6 +126,23 @@ namespace Coding.Trees
             Read(current.Data);
             PreOrder(current.Left);
             PreOrder(current.Right);
+        }
+
+        public void PostOrder(Action<int> read)
+        {
+            Read = read;
+            PostOrder(Root);
+            Read = null;
+        }
+
+        private void PostOrder(Node current)
+        {
+            if(current == null)
+                return;
+
+            PostOrder(current.Left);
+            PostOrder(current.Right);
+            Read(current.Data);
         }
 
     }
