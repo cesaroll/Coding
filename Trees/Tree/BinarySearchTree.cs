@@ -4,20 +4,57 @@ namespace Coding.Trees
 {
     public class BinarySearchTree
     {
+        #region : Private variables
+        private long _height;        
+        #endregion
+
+        #region : Private Properties        
         private Node Root {get; set;}
         private Action<int> Read {get; set;}
 
+        #endregion
+
+        #region : Public Properties
+
+        public long Height {
+            get
+            {
+                if(_height < 0){
+
+                    if(Root == null)
+                        _height = 0;
+                    else
+                        _height = GetHeigth(Root, -1);
+                    
+                }
+                    
+
+                return _height;
+            }
+        }
+
+        #endregion
+
+        #region : Constructors
         public BinarySearchTree()
         {
             Root = null;
+            _height = -1;
         }
+        #endregion
 
+        #region : Add
+
+        #region : Add Array
+        // Add array
         public void Add(params int[] data)
         {
             for(int i=0; i<data.Length; i++)
                 Add(data[i]);
         }
+        #endregion
 
+        #region : Add Recursive
         // Add Recursive
         public void Add(int data)
         {
@@ -29,6 +66,8 @@ namespace Coding.Trees
             }
 
             Add(Root, newNode);
+
+            _height = -1;
         }
 
         private void Add(Node current, Node newNode)
@@ -53,7 +92,9 @@ namespace Coding.Trees
             }
 
         }
-
+        #endregion
+        
+        #region : Add Iterative
         // Add Iterative
         /*public void Add(int data)
         {
@@ -90,8 +131,14 @@ namespace Coding.Trees
 
         }*/
 
-        // inOrder Iterative
+        #endregion
 
+        #endregion
+
+        #region : Traversals
+
+        #region : InOrder
+        // InOrder 
         public void InOrder(Action<int> read)
         {
             Read = read;
@@ -109,7 +156,9 @@ namespace Coding.Trees
             InOrder(current.Right);
 
         }
+        #endregion
 
+        #region : PreOrder
         public void PreOrder(Action<int> read)
         {
             Read = read;
@@ -127,7 +176,9 @@ namespace Coding.Trees
             PreOrder(current.Left);
             PreOrder(current.Right);
         }
+        #endregion
 
+        #region : PostOrder
         public void PostOrder(Action<int> read)
         {
             Read = read;
@@ -144,6 +195,70 @@ namespace Coding.Trees
             PostOrder(current.Right);
             Read(current.Data);
         }
+        #endregion
+
+        #region : TopView Traversal
+
+        public void TopView(Action<int> read)
+        {
+            Read = read;
+            TopView(Root, Direction.Both);
+            Read = null;
+
+        }
+
+        private void TopView(Node curr, Direction direction)
+        {
+            if(curr == null)
+                return;
+
+            Read(curr.Data);
+
+            switch(direction)
+            {
+                case Direction.Left:
+                    TopView(curr.Left, Direction.Left);
+                    break;
+                case Direction.Right:
+                    TopView(curr.Right, Direction.Right);
+                    break;
+                case Direction.Both:
+                    TopView(curr.Left, Direction.Left);
+                    TopView(curr.Right, Direction.Right);
+                    break;                    
+            }
+        }
+
+        #endregion        
+
+        #endregion
+
+        #region : Height
+
+        private long GetHeigth(Node current, long _height)
+        {
+            if(current == null)
+                return _height;
+
+            _height++;
+
+            var leftHeight = GetHeigth(current.Left, _height);
+            var rightHeight = GetHeigth(current.Right, _height);
+
+            return Math.Max(leftHeight, rightHeight);
+        }
+
+        #endregion
+
+
+        #region : Enumerations
+        private enum Direction
+        {
+            Left,
+            Right,
+            Both
+        }
+        #endregion
 
     }
 
