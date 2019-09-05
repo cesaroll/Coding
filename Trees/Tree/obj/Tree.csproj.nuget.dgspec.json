@@ -47,6 +47,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.0.0-preview-20181205-02, )"
+            },
             "Microsoft.NETCore.Platforms": {
               "suppressParent": "All",
               "target": "Package",
@@ -60,12 +64,13 @@
               "version": "[3.0.0-preview3-27504-2, )",
               "autoReferenced": true
             },
-            "runtime.win-x64.Microsoft.NETCore.DotNetAppHost": {
-              "include": "None",
-              "suppressParent": "All",
+            "xunit": {
               "target": "Package",
-              "version": "[3.0.0-preview3-27503-5, )",
-              "autoReferenced": true
+              "version": "[2.4.0, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.0, )"
             }
           },
           "imports": [

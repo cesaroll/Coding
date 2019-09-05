@@ -12,6 +12,11 @@ namespace Coding.Trees
             Root = null;
         }
 
+        public void Add(params int[] data)
+        {
+            for(int i=0; i<data.Length; i++)
+                Add(data[i]);
+        }
         public void Add(int data)
         {
             Root = Add(Root, new Node(data));
