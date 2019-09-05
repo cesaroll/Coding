@@ -1,0 +1,12 @@
+C:\WorkSpaces\Coding\Trees\Tree\bin\Debug\netcoreapp3.0\Tree.exe
+C:\WorkSpaces\Coding\Trees\Tree\bin\Debug\netcoreapp3.0\Tree.deps.json
+C:\WorkSpaces\Coding\Trees\Tree\bin\Debug\netcoreapp3.0\Tree.runtimeconfig.json
+C:\WorkSpaces\Coding\Trees\Tree\bin\Debug\netcoreapp3.0\Tree.runtimeconfig.dev.json
+C:\WorkSpaces\Coding\Trees\Tree\bin\Debug\netcoreapp3.0\Tree.dll
+C:\WorkSpaces\Coding\Trees\Tree\bin\Debug\netcoreapp3.0\Tree.pdb
+C:\WorkSpaces\Coding\Trees\Tree\obj\Debug\netcoreapp3.0\Tree.csprojAssemblyReference.cache
+C:\WorkSpaces\Coding\Trees\Tree\obj\Debug\netcoreapp3.0\Tree.csproj.CoreCompileInputs.cache
+C:\WorkSpaces\Coding\Trees\Tree\obj\Debug\netcoreapp3.0\Tree.AssemblyInfoInputs.cache
+C:\WorkSpaces\Coding\Trees\Tree\obj\Debug\netcoreapp3.0\Tree.AssemblyInfo.cs
+C:\WorkSpaces\Coding\Trees\Tree\obj\Debug\netcoreapp3.0\Tree.dll
+C:\WorkSpaces\Coding\Trees\Tree\obj\Debug\netcoreapp3.0\Tree.pdb
