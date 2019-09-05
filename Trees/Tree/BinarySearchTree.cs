@@ -5,10 +5,7 @@ namespace Coding.Trees
     public class BinarySearchTree
     {
         private Node Root {get; set;}
-
-        public delegate void ReadDelegate(int data);
-
-        private ReadDelegate Read{get; set;}
+        private Action<int> Read {get; set;}
 
         public BinarySearchTree()
         {
@@ -34,7 +31,7 @@ namespace Coding.Trees
             return current;
         }
 
-        public void InOrder(ReadDelegate read)
+        public void InOrder(Action<int> read)
         {
             Read = read;
             InOrder(Root);
