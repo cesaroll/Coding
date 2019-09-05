@@ -17,29 +17,48 @@ namespace Coding.Trees
             for(int i=0; i<data.Length; i++)
                 Add(data[i]);
         }
+
+        // Add Iterative
         public void Add(int data)
         {
-            Root = Add(Root, new Node(data));
-        }
-
-        private Node Add(Node current, Node newNode)
-        {
-            if(current == null){
-                return newNode;
+            var newNode = new Node(data);
+            
+            if(Root == null){
+                Root = newNode;
+                return;
             }
 
-            if(newNode.Data <= current.Data)
-                current.Left = Add(current.Left, newNode);
-            else
-                current.Right = Add(current.Right, newNode);
+            var current = Root;
 
-            return current;
+            while(current != null)
+            {
+                if(current.Data > newNode.Data){
+                    if(current.Left == null){
+                        current.Left = newNode;
+                        return;
+                    }
+                    else{
+                        current = current.Left;
+                    }
+                }
+                else{
+                    if(current.Right == null){
+                        current.Right = newNode;
+                        return;
+                    }
+                    else{
+                        current = current.Right;
+                    }
+                }
+            }
+
         }
 
         public void InOrder(Action<int> read)
         {
             Read = read;
             InOrder(Root);
+            Read = null;
         }
 
         public void InOrder(Node current)
@@ -51,6 +70,24 @@ namespace Coding.Trees
             Read(current.Data);
             InOrder(current.Right);
 
+        }
+
+        public void PreOrder(Action<int> read)
+        {
+            Read = read;
+            PreOrder(Root);
+            Read = null;
+
+        }
+
+        private void PreOrder(Node current)
+        {
+            if(current == null)
+                return;
+
+            Read(current.Data);
+            PreOrder(current.Left);
+            PreOrder(current.Right);
         }
 
     }

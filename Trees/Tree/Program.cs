@@ -11,7 +11,10 @@ namespace Tree
 
             tree.Add(100,20,500,10,30,40);
 
+            Console.WriteLine("InOrder:");
             tree.InOrder((x) => {Console.Write($"{x}, ");});
+            Console.WriteLine("\nPreOrder:");
+            tree.PreOrder((x) => {Console.Write($"{x}, ");});
         }
     }
 }

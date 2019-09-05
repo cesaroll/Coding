@@ -22,5 +22,20 @@ namespace Coding.Trees.Test
                 });
 
         }
+
+        [Theory]
+        [InlineData(new int[]{100,20,500,10,30,40}, new int[]{100,20,10,30,40,500})]
+        public void PreOrderTest(int[] input, int[] expected)
+        {
+            var tree = new BinarySearchTree();
+            tree.Add(input);
+
+            int idx = 0;
+
+            tree.PreOrder((x) => {
+                    Assert.Equal(expected[idx++], x);
+                });
+
+        }
     }
 }
