@@ -71,6 +71,7 @@ namespace Coding.Trees.Test
 
         [Theory]
         [InlineData(new int[]{100,20,500,10,30,40}, new int[]{100,20,10,500})]
+        [InlineData(new int[]{1,2,5,3,6,4}, new int[]{1,2,5,6})]
         public void TopViewTest(int[] input, int[] expected)
         {
             var tree = new BinarySearchTree();
