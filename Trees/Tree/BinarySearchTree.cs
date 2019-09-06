@@ -9,7 +9,7 @@ namespace Coding.Trees
         #endregion
 
         #region : Private Properties        
-        private Node Root {get; set;}
+        internal Node Root {get; set;}
         private Action<int> Read {get; set;}
 
         #endregion
@@ -231,6 +231,32 @@ namespace Coding.Trees
 
         #endregion        
 
+        #region : Level Order Traversal
+
+        public void LevelOrderTraversal(Action<int> action)
+        {
+            if(Root == null)
+                return;
+
+            var q = new System.Collections.Generic.Queue<Node>();
+
+            while(q.Count > 0)
+            {
+                var node = q.Dequeue();
+
+                action(node.Data);
+
+                if(node.Left != null)
+                    q.Enqueue(node.Left);
+
+                if(node.Right != null)
+                    q.Enqueue(node.Right);
+            }
+
+        }
+
+        #endregion
+
         #endregion
 
         #region : Height
@@ -247,6 +273,37 @@ namespace Coding.Trees
 
             return Math.Max(leftHeight, rightHeight);
         }
+
+        #endregion
+
+        
+        #region : IsBinarySearch Tree
+
+        // Is Binary Search Tree using Lambda
+        // It will allways be true unless we tweek it
+        public bool IsBinarySearchTree()
+        {
+            return IsBinarySearchTree(Root, null);
+        }
+
+        private bool IsBinarySearchTree(Node node, Func<int, bool> isInvalid)
+        {
+            if(node == null)
+                return true;
+
+            if(isInvalid != null && isInvalid(node.Data))
+                return false;
+
+            if(!IsBinarySearchTree(node.Left, x => x > node.Data))
+                return false;
+
+            if(!IsBinarySearchTree(node.Right, x => x < node.Data))
+                return false;
+
+            return true;
+                
+        }
+
 
         #endregion
 
