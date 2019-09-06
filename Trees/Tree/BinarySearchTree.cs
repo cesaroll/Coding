@@ -19,15 +19,8 @@ namespace Coding.Trees
         public long Height {
             get
             {
-                if(_height < 0){
-
-                    if(Root == null)
-                        _height = 0;
-                    else
-                        _height = GetHeigth(Root, -1);
-                    
-                }
-                    
+                if(_height < 0)
+                    _height = GetHeigth(Root);                    
 
                 return _height;
             }
@@ -261,17 +254,15 @@ namespace Coding.Trees
 
         #region : Height
 
-        private long GetHeigth(Node current, long _height)
+        private long GetHeigth(Node current)
         {
             if(current == null)
-                return _height;
+                return 0;
 
-            _height++;
+            var leftHeight = GetHeigth(current.Left);
+            var rightHeight = GetHeigth(current.Right);
 
-            var leftHeight = GetHeigth(current.Left, _height);
-            var rightHeight = GetHeigth(current.Right, _height);
-
-            return Math.Max(leftHeight, rightHeight);
+            return Math.Max(leftHeight, rightHeight) + 1; // Add one for this node
         }
 
         #endregion
@@ -294,19 +285,53 @@ namespace Coding.Trees
             if(isInvalid != null && isInvalid(node.Data))
                 return false;
 
-            if(!IsBinarySearchTree(node.Left, x => x > node.Data))
-                return false;
-
-            if(!IsBinarySearchTree(node.Right, x => x < node.Data))
-                return false;
-
-            return true;
+            return IsBinarySearchTree(node.Left, x => x > node.Data) && IsBinarySearchTree(node.Right, x => x < node.Data);
                 
         }
 
 
         #endregion
 
+
+        #region : IsBalanced
+
+        // Is this a balanced Tree
+
+        public bool IsBalanced()
+        {
+            return IsBalanced(Root);
+        }
+        private bool IsBalanced(Node node)
+        {
+            // A tree is balanced if the heights of all its nodes do not differ for more than one
+
+            if(GetHeigthIfBalanced(node) >= 0)
+                return true;
+
+            return false;
+        }
+
+        // Get height if balanced otherwise return -1
+        private long GetHeigthIfBalanced(Node node)
+        {
+            if(node == null)
+                return 0;
+            
+            var leftHeigth = GetHeigthIfBalanced(node.Left);
+            if(leftHeigth == -1)
+                return -1;
+
+            var rightHeigth = GetHeigthIfBalanced(node.Right);
+            if(rightHeigth == -1)
+                return -1;
+
+            if(Math.Abs(leftHeigth - rightHeigth) > 1)
+                return -1;
+
+            return Math.Max(leftHeigth, rightHeigth) + 1;
+        }
+
+        #endregion
 
         #region : Enumerations
         private enum Direction

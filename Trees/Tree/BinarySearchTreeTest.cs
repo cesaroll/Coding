@@ -56,8 +56,8 @@ namespace Coding.Trees.Test
         }
 
         [Theory]
-        [InlineData(100,20,500,10,30,40, 3)]
-        [InlineData(4,2,6,1,3,5,7, 2)]
+        [InlineData(100,20,500,10,30,40, 4)]
+        [InlineData(4,2,6,1,3,5,7, 3)]
         public void HeightTest(params int[] input)
         {
             long expected = input[input.Length-1];
@@ -88,7 +88,7 @@ namespace Coding.Trees.Test
         [InlineData(new int[]{100,20,500,10,30,40})]
         [InlineData(new int[]{1,2,5,3,6,4})]
         [InlineData(new int[]{100,20,200,25,75,150,250,10,35,60,80,225,300,210,235})]
-        public void LevelOrderTraversalTEst(int[] input)
+        public void LevelOrderTraversalTest(int[] input)
         {
             var tree = new BinarySearchTree();
             tree.Add(input);
@@ -120,6 +120,22 @@ namespace Coding.Trees.Test
 
             // It is not a BST
             Assert.False(tree.IsBinarySearchTree());
+        }
+
+        [Theory]
+        [InlineData(new int[]{100,20,500,10,30,40}, false)]
+        [InlineData(new int[]{4,2,6,1,3,5,7}, true)]
+        [InlineData(new int[]{4,2,6,1,3,5}, true)]
+        [InlineData(new int[]{4,2,6,1,3,}, true)]
+        public void IsBalancedTest(int[] input, bool expected)
+        {
+            var tree = new BinarySearchTree();
+            tree.Add(input);
+
+            if(expected)
+                Assert.True(tree.IsBalanced());
+            else
+                Assert.False(tree.IsBalanced());
         }
     }
 }
